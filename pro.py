@@ -11,12 +11,15 @@ key = pygame.key.get_pressed()
 i1 = pygame.image.load("img/i1.jpg")
 i1 = pygame.transform.scale(i1, (1920, 1080))
 winfll = False
-font = pygame.font.Font("img/PixelifySans-VariableFont_wght.ttf", 64)
+font = pygame.font.Font("img/t2.ttf", 64)
 txt1 = font.render("Ricordati che ", True, (0, 255, 255))
 txt2 = font.render("Primma ", True, (0, 255, 255))
 txt3 = font.render("Durante e dopo in un edificio", True, (0, 255, 255))
 txt4 = font.render("Durante e dopo all'aperto", True, (0, 255, 255))
 bgw = False
+ax = 0
+ay = 0
+at = 10
 
 i2 = pygame.image.load("img/i2.jpg")
 i2 = pygame.transform.scale(i2, (1920, 1080))
@@ -36,12 +39,9 @@ while true:
 
             pygame.key.get_pressed()
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_k:
-            bgw = False
-            true = False
 
         if event.type == pygame.KEYDOWN and event.key == pygame.K_x:
-            true = "False"
+            true = False
 
         if event.type == pygame.KEYDOWN and event.key == pygame.K_f:
             window = pygame.display.set_mode()
@@ -66,11 +66,44 @@ while true:
     if ima == 1:
         window.blit(b, (0, 0))
         print("no image found")
-        window.blit(txt1, (0, 0))
+        window.blit(txt1, (ax, 0))
         pygame.display.update()
-        sleep(1)
-        window.blit(i1, (0, 0))
-        ima = 10
+        if ax == 20:
+            at = 9
+            ax = ax + at
+
+        if ax == 40:
+            at = 8
+            ax = ax + at
+
+        if ax == 60:
+            at = 7
+
+        if ax == 80:
+            at = 6
+
+        if ax == 100:
+            at = 5
+
+        if ax == 120:
+            at = 4
+
+        if ax == 140:
+            at = 3
+
+        if ax == 160:
+            at = 2
+
+        if ax == 180:
+            at = 1
+
+        if ax == 200:
+            at = 0
+
+
+        #sleep(1)
+        #window.blit(i1, (0, 0))
+        ima = 1
 
     if ima == 2:
         window.blit(b, (0, 0))
@@ -95,14 +128,5 @@ while true:
         window.blit(i4, (0, 0))
         ima = 10
 
-if true == "False":
-    bgw = True
-
-while bgw:
-    print(bgw)
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
-            bgw = False
-            true = True
 
     pygame.display.update()
